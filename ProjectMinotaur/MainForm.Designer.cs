@@ -37,6 +37,7 @@
             // gameTimer
             // 
             gameTimer.Enabled = true;
+            gameTimer.Interval = 15;
             gameTimer.Tick += gameTimer_Tick;
             // 
             // GameCanvas
@@ -57,6 +58,7 @@
             Name = "MainForm";
             Text = "Form1";
             Load += MainForm_Load;
+            KeyUp += MainForm_KeyUp;
             ((System.ComponentModel.ISupportInitialize)GameCanvas).EndInit();
             ResumeLayout(false);
         }
