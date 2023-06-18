@@ -7,6 +7,7 @@ namespace ProjectMinotaur
         private const int topPanelPx = 39;
         private const int gameCanvasPadding = 20;
         GraphicsManager graphicsManager;
+        private bool[,] testMaze = { {true,false,false, false },{false,false,false, false },{true,false,true, false }, { false, false, false,true } };
         int[,] mazeMap = new int[10, 10];
         public MainForm()
         {
@@ -23,7 +24,11 @@ namespace ProjectMinotaur
             GameCanvas.Width = GameCanvas.Height;
             GameCanvas.Location = new Point((this.Width - GameCanvas.Width) / 2 + gameCanvasPadding, gameCanvasPadding);
             graphicsManager = new GraphicsManager(GameCanvas);
-            graphicsManager.CreateMaze(new int[] { 500,500   });
+            graphicsManager.CreateMazeBase(new int[] { 50,50   });
+            //graphicsManager.CreateMazeFromMap(testMaze);
+            graphicsManager.PlayerPosition = new Point(0, 0);
+            graphicsManager.AddWallPiece(new Point(0, 1));
+            graphicsManager.AddWallPiece(new Point(1, 0));
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
