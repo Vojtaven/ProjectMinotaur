@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -12,9 +13,9 @@ namespace ProjectMinotaur
         private Bitmap maze;
         private Graphics graphics;
         private PictureBox gameCanvas;
-        private Brush wallBrush = Brushes.Black;
-        private Brush playerBrush = Brushes.Lime;
-        private Brush backgroundBrush = Brushes.White;
+        private SolidBrush wallBrush = new SolidBrush(Color.Black);
+        private SolidBrush playerBrush = new SolidBrush(Color.Lime);
+        private SolidBrush backgroundBrush;
         private int width, height, mazeSize;
         private float wallThickness;
         private bool mazeGenerationInProgress = false;
@@ -25,6 +26,8 @@ namespace ProjectMinotaur
         public GraphicsManager(PictureBox gameCanvas)
         {
             this.gameCanvas = gameCanvas;
+            backgroundBrush = new SolidBrush(gameCanvas.BackColor);
+            wallBrush = new SolidBrush(Color.FromArgb(gameCanvas.BackColor.ToArgb() ^ 0xffffff));
         }
 
         public void CreateMazeFromMap(bool[,] mazeMap)

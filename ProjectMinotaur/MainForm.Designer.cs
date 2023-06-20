@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             gameTimer = new System.Windows.Forms.Timer(components);
             GameCanvas = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)GameCanvas).BeginInit();
@@ -43,20 +44,25 @@
             // GameCanvas
             // 
             GameCanvas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            GameCanvas.Location = new Point(99, 0);
+            GameCanvas.BackColor = SystemColors.WindowFrame;
+            GameCanvas.Location = new Point(141, 0);
+            GameCanvas.Margin = new Padding(4, 5, 4, 5);
             GameCanvas.Name = "GameCanvas";
-            GameCanvas.Size = new Size(450, 360);
+            GameCanvas.Size = new Size(643, 600);
             GameCanvas.TabIndex = 0;
             GameCanvas.TabStop = false;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(675, 360);
+            BackColor = Color.FromArgb(64, 64, 64);
+            ClientSize = new Size(964, 600);
             Controls.Add(GameCanvas);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(4, 5, 4, 5);
             Name = "MainForm";
-            Text = "Form1";
+            Text = "Project Minotaur";
             Load += MainForm_Load;
             KeyUp += MainForm_KeyUp;
             ((System.ComponentModel.ISupportInitialize)GameCanvas).EndInit();
