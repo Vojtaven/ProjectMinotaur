@@ -21,7 +21,7 @@ namespace ProjectMinotaur
         private bool mazeGenerationInProgress = false;
 
         private Point playerPosition = new Point(-1, -1);
-        private const float playerScaleDown = 1.25F;
+        private const float playerScaleDown = 1.50F;
         private float playerOffset;
         public GraphicsManager(PictureBox gameCanvas)
         {
@@ -61,32 +61,22 @@ namespace ProjectMinotaur
             graphics.FillRectangle(wallBrush, (position.Y + 1) * wallThickness, (position.X + 1) * wallThickness, wallThickness, wallThickness);
         }
 
-
-        public Point PlayerPosition
+        public void ChangePlayerPosition(PlayerController player)
         {
-            set
-            {
-                Point position = value;
-                if ((position.X >= mazeSize || position.Y >= mazeSize))
-                    throw new ArgumentException("Player must be in maze boundaries");
-                if (playerPosition.X != -1)
-                {
-                    RemovePlayer(playerPosition);
-                }
-                playerPosition = position;
-                AddPlayer(playerPosition);
-            }
-            get { return playerPosition; }
+            if ((player.Position.X >= mazeSize || player.Position.Y >= mazeSize))
+                throw new ArgumentException("Player must be in maze boundaries");
+
+            RemovePlayer(player);
+            AddPlayer(player);
         }
-
-        private void RemovePlayer(Point position)
+        public void RemovePlayer(PlayerController player)
         {
-            graphics.FillRectangle(backgroundBrush, (position.Y + 1) * wallThickness + playerOffset, (position.X + 1) * wallThickness + playerOffset, wallThickness / playerScaleDown, wallThickness / playerScaleDown);
+            graphics.FillRectangle(backgroundBrush, (player.OldPosition.Y + 1) * wallThickness + playerOffset, (player.OldPosition.X + 1) * wallThickness + playerOffset, wallThickness / playerScaleDown, wallThickness / playerScaleDown);
         }
-
-        private void AddPlayer(Point position)
+        public void AddPlayer(PlayerController player)
         {
-            graphics.FillRectangle(playerBrush, (position.Y + 1) * wallThickness + playerOffset, (position.X + 1) * wallThickness + playerOffset, wallThickness / playerScaleDown, wallThickness / playerScaleDown);
+            SolidBrush playerBrush = new SolidBrush(player.PlayerColor);
+            graphics.FillRectangle(playerBrush, (player.Position.Y + 1) * wallThickness + playerOffset, (player.Position.X + 1) * wallThickness + playerOffset, wallThickness / playerScaleDown, wallThickness / playerScaleDown);
         }
 
         public void CreateMazeBase(int[] mazeShape)

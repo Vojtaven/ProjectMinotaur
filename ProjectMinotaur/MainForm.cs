@@ -27,9 +27,12 @@ namespace ProjectMinotaur
 
             graphicsManager = new GraphicsManager(GameCanvas);
             mazeManager = new MazeManager(graphicsManager);
+
+
+            mazeManager.Maze = new bool[10, 10];
             playerController = new PlayerController(graphicsManager, mazeManager);
 
-            mazeManager.Maze = new bool[100, 100];
+
             //Test code
             //graphicsManager.CreateMazeBase(new int[] { 50,50   });
             //graphicsManager.CreateMazeFromMap(testMaze);

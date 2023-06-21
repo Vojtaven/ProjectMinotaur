@@ -11,12 +11,19 @@ namespace ProjectMinotaur
         private GraphicsManager graphicsManager;
         private MazeManager mazeManager;
         private Point playerPosition;
+        private Point oldPlayerPosition;
+        private Color playerColor = Color.LimeGreen;
         public PlayerController(GraphicsManager graphicsManager, MazeManager mazeManager)
         {
             this.graphicsManager = graphicsManager;
             this.mazeManager = mazeManager;
             playerPosition = new Point(0,0);
+            graphicsManager.AddPlayer(this);
         }
+
+        public Point Position { get { return playerPosition; } }
+        public Point OldPosition { get { return oldPlayerPosition; } }
+        public Color PlayerColor { get {  return playerColor; } }
 
         public void keyPressed(KeyEventArgs e)
         {
@@ -40,8 +47,9 @@ namespace ProjectMinotaur
 
             if (mazeManager.IsFree(newPlayerPosition))
             {
+                oldPlayerPosition = playerPosition;
                 playerPosition = newPlayerPosition;
-                graphicsManager.PlayerPosition = newPlayerPosition;
+                graphicsManager.ChangePlayerPosition(this);
             }
         }
     }
