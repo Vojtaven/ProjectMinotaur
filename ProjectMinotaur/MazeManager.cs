@@ -11,9 +11,27 @@ namespace ProjectMinotaur
         private bool[,] maze;
         private int size;
         private GraphicsManager graphicsManager;
-        public MazeManager(GraphicsManager graphicsManager)
+        ComboBox algoritmChoiceCB;
+        NumericUpDown mazeSizeNUP;
+        MazeGeneretingAlgoritm[] algoritms = { new RandomizedDFS("Randomized DFS") };
+
+
+        public MazeManager(GraphicsManager graphicsManager,ComboBox algoritmChoiceCB,NumericUpDown mazeSizeNUP)
         {
             this.graphicsManager = graphicsManager;
+            this.algoritmChoiceCB = algoritmChoiceCB;
+            this.mazeSizeNUP    = mazeSizeNUP;
+            UpdateAlgoritmsChoice();
+        }
+
+        public void UpdateAlgoritmsChoice()
+        {
+            algoritmChoiceCB.Items.Clear();
+            foreach(MazeGeneretingAlgoritm x in algoritms)
+            {
+                algoritmChoiceCB.Items.Add(x.ToString());
+            }
+            algoritmChoiceCB.SelectedIndex = 0;
         }
 
 

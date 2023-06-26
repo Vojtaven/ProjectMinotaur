@@ -32,15 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             gameTimer = new System.Windows.Forms.Timer(components);
             GameCanvas = new PictureBox();
-            button1 = new Button();
-            comboBox1 = new ComboBox();
-            numericUpDown1 = new NumericUpDown();
+            generateBt = new Button();
+            algoritmChoiceCB = new ComboBox();
+            mazeSizeNUP = new NumericUpDown();
             label2 = new Label();
             label3 = new Label();
-            groupBox1 = new GroupBox();
+            settingsGB = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)GameCanvas).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mazeSizeNUP).BeginInit();
+            settingsGB.SuspendLayout();
             SuspendLayout();
             // 
             // gameTimer
@@ -52,39 +52,46 @@
             // GameCanvas
             // 
             GameCanvas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            GameCanvas.BackColor = SystemColors.WindowFrame;
-            GameCanvas.Location = new Point(141, 0);
+            GameCanvas.BackColor = SystemColors.InfoText;
+            GameCanvas.Location = new Point(356, 0);
             GameCanvas.Margin = new Padding(4, 5, 4, 5);
             GameCanvas.Name = "GameCanvas";
-            GameCanvas.Size = new Size(643, 600);
+            GameCanvas.Size = new Size(643, 903);
             GameCanvas.TabIndex = 0;
             GameCanvas.TabStop = false;
             // 
-            // button1
+            // generateBt
             // 
-            button1.Location = new Point(15, 104);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            generateBt.AllowDrop = true;
+            generateBt.Location = new Point(15, 104);
+            generateBt.Name = "generateBt";
+            generateBt.Size = new Size(112, 34);
+            generateBt.TabIndex = 1;
+            generateBt.Text = "Generate";
+            generateBt.UseVisualStyleBackColor = true;
+            generateBt.UseWaitCursor = true;
+            generateBt.Click += generateBt_Click;
             // 
-            // comboBox1
+            // algoritmChoiceCB
             // 
-            comboBox1.Dock = DockStyle.Left;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(3, 27);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(182, 33);
-            comboBox1.TabIndex = 2;
+            algoritmChoiceCB.AllowDrop = true;
+            algoritmChoiceCB.Dock = DockStyle.Left;
+            algoritmChoiceCB.DropDownStyle = ComboBoxStyle.DropDownList;
+            algoritmChoiceCB.FormattingEnabled = true;
+            algoritmChoiceCB.Location = new Point(3, 27);
+            algoritmChoiceCB.Name = "algoritmChoiceCB";
+            algoritmChoiceCB.Size = new Size(182, 33);
+            algoritmChoiceCB.TabIndex = 2;
+            algoritmChoiceCB.UseWaitCursor = true;
             // 
-            // numericUpDown1
+            // mazeSizeNUP
             // 
-            numericUpDown1.Location = new Point(0, 265);
-            numericUpDown1.Margin = new Padding(100);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(180, 31);
-            numericUpDown1.TabIndex = 3;
+            mazeSizeNUP.AllowDrop = true;
+            mazeSizeNUP.Location = new Point(0, 265);
+            mazeSizeNUP.Margin = new Padding(100);
+            mazeSizeNUP.Name = "mazeSizeNUP";
+            mazeSizeNUP.Size = new Size(180, 31);
+            mazeSizeNUP.TabIndex = 3;
             // 
             // label2
             // 
@@ -97,44 +104,47 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(881, 290);
+            label3.Location = new Point(15, 174);
             label3.Name = "label3";
             label3.Size = new Size(59, 25);
             label3.TabIndex = 6;
             label3.Text = "label3";
             // 
-            // groupBox1
+            // settingsGB
             // 
-            groupBox1.Controls.Add(numericUpDown1);
-            groupBox1.Controls.Add(comboBox1);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Dock = DockStyle.Left;
-            groupBox1.Location = new Point(0, 0);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(134, 600);
-            groupBox1.TabIndex = 7;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
+            settingsGB.Controls.Add(mazeSizeNUP);
+            settingsGB.Controls.Add(label3);
+            settingsGB.Controls.Add(algoritmChoiceCB);
+            settingsGB.Controls.Add(generateBt);
+            settingsGB.Dock = DockStyle.Left;
+            settingsGB.Location = new Point(0, 0);
+            settingsGB.Margin = new Padding(100, 3, 3, 3);
+            settingsGB.Name = "settingsGB";
+            settingsGB.Size = new Size(224, 903);
+            settingsGB.TabIndex = 7;
+            settingsGB.TabStop = false;
+            settingsGB.Text = "Settings";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(964, 600);
-            Controls.Add(groupBox1);
-            Controls.Add(label3);
+            ClientSize = new Size(1395, 903);
+            Controls.Add(settingsGB);
             Controls.Add(label2);
             Controls.Add(GameCanvas);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Margin = new Padding(4, 5, 4, 5);
             Name = "MainForm";
             Text = "Project Minotaur";
             Load += MainForm_Load;
             KeyUp += MainForm_KeyUp;
             ((System.ComponentModel.ISupportInitialize)GameCanvas).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)mazeSizeNUP).EndInit();
+            settingsGB.ResumeLayout(false);
+            settingsGB.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -143,11 +153,11 @@
 
         private System.Windows.Forms.Timer gameTimer;
         private PictureBox GameCanvas;
-        private Button button1;
-        private ComboBox comboBox1;
-        private NumericUpDown numericUpDown1;
+        private Button generateBt;
+        private ComboBox algoritmChoiceCB;
+        private NumericUpDown mazeSizeNUP;
         private Label label2;
         private Label label3;
-        private GroupBox groupBox1;
+        private GroupBox settingsGB;
     }
 }

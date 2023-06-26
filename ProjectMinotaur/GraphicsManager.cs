@@ -14,7 +14,6 @@ namespace ProjectMinotaur
         private Graphics graphics;
         private PictureBox gameCanvas;
         private SolidBrush wallBrush = new SolidBrush(Color.Black);
-        private SolidBrush playerBrush = new SolidBrush(Color.Lime);
         private SolidBrush backgroundBrush;
         private int width, height, mazeSize;
         private float wallThickness;

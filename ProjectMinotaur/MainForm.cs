@@ -18,18 +18,13 @@ namespace ProjectMinotaur
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
-            this.MinimumSize = this.Size;
-            this.MaximumSize = this.Size;
-            GameCanvas.Height = this.Height - topPanelPx - gameCanvasPadding * 2;
-            GameCanvas.Width = GameCanvas.Height;
-            GameCanvas.Location = new Point((this.Width - GameCanvas.Width) / 2 + gameCanvasPadding, gameCanvasPadding);
+            this.FormatWindows();
 
             graphicsManager = new GraphicsManager(GameCanvas);
-            mazeManager = new MazeManager(graphicsManager);
+            mazeManager = new MazeManager(graphicsManager, algoritmChoiceCB, mazeSizeNUP);
 
 
-            mazeManager.Maze = new bool[10, 10];
+            mazeManager.Maze = new bool[100, 100];
             playerController = new PlayerController(graphicsManager, mazeManager);
 
 
@@ -50,6 +45,22 @@ namespace ProjectMinotaur
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
             playerController.keyPressed(e);
+        }
+
+        private void generateBt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormatWindows()
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
+            GameCanvas.Height = this.Height - topPanelPx - gameCanvasPadding * 2;
+            GameCanvas.Width = GameCanvas.Height;
+            GameCanvas.Location = new Point((this.Width - GameCanvas.Width) / 2 + gameCanvasPadding, gameCanvasPadding);
+
         }
     }
 }
