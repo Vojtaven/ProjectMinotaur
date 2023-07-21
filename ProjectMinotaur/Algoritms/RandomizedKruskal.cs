@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace Algoritms
 {
-    internal class RandomizedKruskal
+    internal class RandomizedKruskal: MazeGeneretingAlgoritm
     {
+        public RandomizedKruskal(string name) : base(name) { }
+
+
+        public override bool[,] generateMaze(int mazeSize)
+        {
+            bool[,] maze = new bool[mazeSize, mazeSize];
+
+
+
+
+
+            return maze;
+        }
     }
 }
