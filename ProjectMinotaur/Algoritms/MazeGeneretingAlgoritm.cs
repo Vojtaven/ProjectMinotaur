@@ -18,7 +18,8 @@ namespace Algoritms
         {
             return name;
         }
-        public abstract bool[,] generateMaze(int MazeSize);
+
+        public abstract bool[,] GenerateMaze(int MazeSize);
 
     }
 }

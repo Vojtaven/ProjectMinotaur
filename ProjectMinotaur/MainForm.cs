@@ -44,7 +44,7 @@ namespace ProjectMinotaur
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
-            playerController.keyPressed(e);
+            playerController.KeyPressed(e);
         }
 
         private void generateBt_Click(object sender, EventArgs e)

@@ -25,7 +25,7 @@ namespace ProjectMinotaur
         public Point OldPosition { get { return oldPlayerPosition; } }
         public Color PlayerColor { get {  return playerColor; } }
 
-        public void keyPressed(KeyEventArgs e)
+        public void KeyPressed(KeyEventArgs e)
         {
             int xModifier= 0,yModifier=0;
             switch (e.KeyCode)

@@ -12,7 +12,7 @@ namespace Algoritms
         public RandomizedDFS(string name): base(name){}
 
 
-        public override bool[,] generateMaze(int mazeSize)
+        public override bool[,] GenerateMaze(int mazeSize)
         {
             bool[,] maze = new bool[mazeSize,mazeSize];
 
