@@ -21,7 +21,7 @@ namespace ProjectMinotaur
             graphicsManager.AddPlayer(this);
         }
 
-        public Point Position { get { return playerPosition; } }
+        public Point Position { get { return playerPosition; } set { playerPosition = value; } }
         public Point OldPosition { get { return oldPlayerPosition; } }
         public Color PlayerColor { get {  return playerColor; } }
 

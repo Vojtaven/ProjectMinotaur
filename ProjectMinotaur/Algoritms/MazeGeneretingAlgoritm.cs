@@ -14,6 +14,12 @@ namespace Algoritms
             this.name = name;
         }
 
+
+        public bool ValidSize(int mazeSize, out int[] sugestedSizes)
+        {
+            sugestedSizes = new int[2];
+            return true;
+        }
         public override string ToString()
         {
             return name;

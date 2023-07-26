@@ -12,9 +12,10 @@ namespace ProjectMinotaur
         private bool[,] maze;
         private int size;
         private GraphicsManager graphicsManager;
+        private MazeGeneretingAlgoritm algoritmNowInUse;
         ComboBox algoritmChoiceCB;
         NumericUpDown mazeSizeNUP;
-        MazeGeneretingAlgoritm[] algoritms = { new RandomizedDFS("Randomized DFS"), new RandomizedKruskal("Randomized Kruskal"), new RandomizedPrim("Randomized Prim"), new Tessellation("Tessellation"), new Wilson("Wilson") };
+        MazeGeneretingAlgoritm[] algoritms = { new Tessellation("Tessellation"), new RandomizedDFS("Randomized DFS"), new RandomizedKruskal("Randomized Kruskal"), new RandomizedPrim("Randomized Prim"), new Wilson("Wilson") };
 
 
         public MazeManager(GraphicsManager graphicsManager,ComboBox algoritmChoiceCB,NumericUpDown mazeSizeNUP)
@@ -33,8 +34,8 @@ namespace ProjectMinotaur
                 algoritmChoiceCB.Items.Add(x.ToString());
             }
             algoritmChoiceCB.SelectedIndex = 0;
+            algoritmNowInUse = algoritms[0];
         }
-
 
         public bool[,] Maze
         {
@@ -48,6 +49,42 @@ namespace ProjectMinotaur
                 maze = value;
                 graphicsManager.CreateMazeFromMap(maze);
             }
+        }
+
+        public void CreateMaze()
+        {
+            size = (int)mazeSizeNUP.Value;
+            algoritmNowInUse = algoritms[algoritmChoiceCB.SelectedIndex];
+            int[] sugestedSizes;
+
+            if (algoritmNowInUse.ValidSize(size,out sugestedSizes))
+            {
+               maze = algoritmNowInUse.GenerateMaze(size);
+            }
+            else
+            {
+                string message = $"For inputed size is not posible to generate maze with selected algoritm. Posible sizes are {sugestedSizes[0]} and {sugestedSizes[1]}. Press Yes for {sugestedSizes[0]} or No for {sugestedSizes[1]}";
+                string title = "Invalid Size";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNoCancel;
+                DialogResult result = MessageBox.Show(message, title, buttons);
+                if (result == DialogResult.Yes)
+                {
+                    size = sugestedSizes[0];
+                }
+                else if(result == DialogResult.No)
+                {
+                    size = sugestedSizes[1];
+                }
+                else
+                {
+                    return;
+                }
+                mazeSizeNUP.Value = size;
+
+                maze = algoritmNowInUse.GenerateMaze(size);
+            }
+
+            graphicsManager.CreateMazeFromMap(maze);
         }
 
         public bool IsFree(Point position)

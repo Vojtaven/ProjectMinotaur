@@ -19,7 +19,6 @@ namespace ProjectMinotaur
         private float wallThickness;
         private bool mazeGenerationInProgress = false;
 
-        private Point playerPosition = new Point(-1, -1);
         private const float playerScaleDown = 1.50F;
         private float playerOffset;
         public GraphicsManager(PictureBox gameCanvas)

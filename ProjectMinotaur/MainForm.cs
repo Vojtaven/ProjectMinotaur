@@ -13,7 +13,6 @@ namespace ProjectMinotaur
         public MainForm()
         {
             InitializeComponent();
-
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -49,7 +48,7 @@ namespace ProjectMinotaur
 
         private void generateBt_Click(object sender, EventArgs e)
         {
-
+            mazeManager.CreateMaze();
         }
 
         private void FormatWindows()
@@ -62,5 +61,6 @@ namespace ProjectMinotaur
             GameCanvas.Location = new Point((this.Width - GameCanvas.Width) / 2 + gameCanvasPadding, gameCanvasPadding);
 
         }
+
     }
 }
