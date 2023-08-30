@@ -21,7 +21,23 @@ namespace ProjectMinotaur
             graphicsManager.AddPlayer(this);
         }
 
-        public Point Position { get { return playerPosition; } set { playerPosition = value; } }
+        public Point Position
+        {
+            get { return playerPosition; }
+            set
+            {
+                if (mazeManager.IsFree(value))
+                {
+                    oldPlayerPosition = playerPosition;
+                    playerPosition = value;
+                    graphicsManager.ChangePlayerPosition(this);
+                }
+                else
+                {
+                    throw new ArgumentException("Now valid position");
+                }
+            }
+        }
         public Point OldPosition { get { return oldPlayerPosition; } }
         public Color PlayerColor { get {  return playerColor; } }
 
