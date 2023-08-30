@@ -23,6 +23,7 @@ namespace ProjectMinotaur
             this.graphicsManager = graphicsManager;
             this.algoritmChoiceCB = algoritmChoiceCB;
             this.mazeSizeNUP    = mazeSizeNUP;
+            Setup();
             UpdateAlgoritmsChoice();
         }
 
@@ -46,6 +47,7 @@ namespace ProjectMinotaur
                     throw new ArgumentException("Maze map must be square");
 
                 size = value.GetLength(0);
+                mazeSizeNUP.Value = size;
                 maze = value;
                 graphicsManager.CreateMazeFromMap(maze);
             }
@@ -97,6 +99,11 @@ namespace ProjectMinotaur
 
 
             return outputValue;
+        }
+
+        private void Setup()
+        {
+            this.Maze = new bool[50, 50];
         }
 
     }

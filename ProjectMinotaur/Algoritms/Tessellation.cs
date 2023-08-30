@@ -16,6 +16,11 @@ namespace Algoritms
         public Tessellation(string name) : base(name) { }
 
 
+        public bool ValidSize(int mazeSize, out int[] sugestedSizes)
+        {
+            sugestedSizes = new int[2];
+            return true;
+        }
         public override bool[,] GenerateMaze(int mazeSize)
         {
             maze = new bool[mazeSize, mazeSize];

@@ -7,8 +7,10 @@ namespace ProjectMinotaur
         private const int topPanelPx = 39;
         private const int gameCanvasPadding = 20;
         private GraphicsManager graphicsManager;
-        private MazeManager mazeManager;
-        private PlayerController playerController;
+        private GameManager gameManager;
+
+        //private MazeManager mazeManager;
+        //private PlayerController playerController;
         //private bool[,] testMaze = { {true,false,false, false },{false,false,false, false },{true,false,true, false }, { false, false, false,true } };
         public MainForm()
         {
@@ -20,12 +22,7 @@ namespace ProjectMinotaur
             this.FormatWindows();
 
             graphicsManager = new GraphicsManager(GameCanvas);
-            mazeManager = new MazeManager(graphicsManager, algoritmChoiceCB, mazeSizeNUP);
-
-
-            mazeManager.Maze = new bool[100, 100];
-            playerController = new PlayerController(graphicsManager, mazeManager);
-
+            gameManager = new GameManager(graphicsManager, algoritmChoiceCB, mazeSizeNUP);
 
             //Test code
             //graphicsManager.CreateMazeBase(new int[] { 50,50   });
@@ -43,12 +40,12 @@ namespace ProjectMinotaur
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
-            playerController.KeyPressed(e);
+            gameManager.KeyPressed(e);
         }
 
         private void generateBt_Click(object sender, EventArgs e)
         {
-            mazeManager.CreateMaze();
+            gameManager.GenerateMaze();
         }
 
         private void FormatWindows()
