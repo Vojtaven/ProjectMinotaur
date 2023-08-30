@@ -15,7 +15,7 @@ namespace Algoritms
         }
 
 
-        public bool ValidSize(int mazeSize, out int[] sugestedSizes)
+        public virtual bool ValidSize(int mazeSize, out int[] sugestedSizes)
         {
             sugestedSizes = new int[2];
             return true;

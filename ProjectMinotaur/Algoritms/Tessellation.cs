@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,10 +17,18 @@ namespace Algoritms
         public Tessellation(string name) : base(name) { }
 
 
-        public bool ValidSize(int mazeSize, out int[] sugestedSizes)
+        public override bool ValidSize(int mazeSize, out int[] sugestedSizes)
         {
             sugestedSizes = new int[2];
-            return true;
+            if (IsPowerOfTwo(mazeSize))
+            {
+                return true;
+            }
+            else
+            {
+                sugestedSizes = NearestPowersOfTwo(mazeSize);
+                return false;
+            }
         }
         public override bool[,] GenerateMaze(int mazeSize)
         {
@@ -86,6 +95,20 @@ namespace Algoritms
                 }
 
             }
+        }
+
+        private bool IsPowerOfTwo(int x)
+        {
+            return (x != 0) && ((x & (x - 1)) == 0);
+        }
+        private int[] NearestPowersOfTwo(int x)
+        {
+            int[] nearestPowers = new int[2];
+            nearestPowers[1] = (int)BitOperations.RoundUpToPowerOf2((uint)x);
+            nearestPowers[0] = (nearestPowers[1] >> 1)-1;
+            nearestPowers[1]--;
+            return nearestPowers;
+
         }
 
         private void StartingConfiguration()
