@@ -27,5 +27,7 @@ namespace Algoritms
 
         public abstract bool[,] GenerateMaze(int MazeSize);
 
+        protected abstract void StartingConfiguration();
+
     }
 }

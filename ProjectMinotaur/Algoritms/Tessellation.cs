@@ -9,7 +9,7 @@ namespace Algoritms
 {
     internal class Tessellation : MazeGeneretingAlgoritm
     {
-        private int[,] offsetCoeficinets = { { 1, 0 }, { 0, 1 },{ 1, 1 } };
+        private int[,] offsetCoeficinets = { { 1, 0 }, { 0, 1 }, { 1, 1 } };
         private int[,] wallRemovingCoeficients = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
         private bool[,] maze;
         private int chunkSize;
@@ -19,10 +19,10 @@ namespace Algoritms
 
         public override bool ValidSize(int mazeSize, out int[] sugestedSizes)
         {
-            sugestedSizes = new int[2];
+
             if (IsPowerOfTwo(mazeSize))
             {
-                return true;
+                return base.ValidSize(mazeSize, out sugestedSizes);
             }
             else
             {
@@ -46,7 +46,7 @@ namespace Algoritms
 
         private void CopyChunk()
         {
-            int x,y;
+            int x, y;
             int mazeSize = maze.GetLength(0);
             for (int i = 0; i < 3; i++)
             {
@@ -56,7 +56,7 @@ namespace Algoritms
                     {
                         x = chunkSize * offsetCoeficinets[i, 0] + j;
                         y = chunkSize * offsetCoeficinets[i, 1] + k;
-                        if(x<mazeSize && y< mazeSize)
+                        if (x < mazeSize && y < mazeSize)
                             maze[x, y] = maze[j, k];
                     }
                 }
@@ -93,7 +93,6 @@ namespace Algoritms
                     }
                     maze[x, y] = false;
                 }
-
             }
         }
 
@@ -105,17 +104,17 @@ namespace Algoritms
         {
             int[] nearestPowers = new int[2];
             nearestPowers[1] = (int)BitOperations.RoundUpToPowerOf2((uint)x);
-            nearestPowers[0] = (nearestPowers[1] >> 1)-1;
+            nearestPowers[0] = (nearestPowers[1] >> 1) - 1;
             nearestPowers[1]--;
             return nearestPowers;
 
         }
 
-        private void StartingConfiguration()
+        protected override void StartingConfiguration()
         {
             maze[1, 0] = true;
-            maze[1,1] = true;
-            maze[0,1] = true;
+            maze[1, 1] = true;
+            maze[0, 1] = true;
         }
 
     }

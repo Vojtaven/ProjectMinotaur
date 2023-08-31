@@ -21,5 +21,9 @@ namespace Algoritms
 
             return maze;
         }
+        protected override void StartingConfiguration()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
