@@ -59,5 +59,9 @@ namespace ProjectMinotaur
 
         }
 
+        private void algoritmChoiceCB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

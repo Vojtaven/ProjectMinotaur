@@ -76,19 +76,19 @@
             // 
             algoritmChoiceCB.AllowDrop = true;
             algoritmChoiceCB.Dock = DockStyle.Left;
-            algoritmChoiceCB.DropDownStyle = ComboBoxStyle.DropDownList;
             algoritmChoiceCB.FormattingEnabled = true;
             algoritmChoiceCB.Location = new Point(3, 27);
             algoritmChoiceCB.Name = "algoritmChoiceCB";
             algoritmChoiceCB.Size = new Size(183, 33);
             algoritmChoiceCB.TabIndex = 2;
             algoritmChoiceCB.UseWaitCursor = true;
+            algoritmChoiceCB.KeyPress += algoritmChoiceCB_KeyPress;
             // 
             // mazeSizeNUP
             // 
             mazeSizeNUP.AllowDrop = true;
             mazeSizeNUP.Location = new Point(0, 265);
-            mazeSizeNUP.Margin = new Padding(100, 100, 100, 100);
+            mazeSizeNUP.Margin = new Padding(100);
             mazeSizeNUP.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
             mazeSizeNUP.Name = "mazeSizeNUP";
             mazeSizeNUP.Size = new Size(180, 31);

@@ -22,7 +22,7 @@ namespace ProjectMinotaur
         public void GenerateMaze()
         {
             mazeManager.CreateMaze();
-            player.Position = new Point(0,0);
+            player.Reset();
         }
 
         public void KeyPressed(KeyEventArgs e)

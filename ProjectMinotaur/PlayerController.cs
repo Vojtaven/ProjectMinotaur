@@ -41,21 +41,27 @@ namespace ProjectMinotaur
         public Point OldPosition { get { return oldPlayerPosition; } }
         public Color PlayerColor { get {  return playerColor; } }
 
+
+        public void Reset()
+        {
+            playerPosition = new Point(0, 0);
+            graphicsManager.AddPlayer(this);
+        }
         public void KeyPressed(KeyEventArgs e)
         {
             int xModifier= 0,yModifier=0;
             switch (e.KeyCode)
             {
-                case Keys.Up:
+                case Keys.W:
                     xModifier = -1;
                     break;
-                case Keys.Down:
+                case Keys.S:
                     xModifier = 1;
                     break;
-                case Keys.Left:
+                case Keys.A:
                     yModifier = -1;
                     break;
-                case Keys.Right:
+                case Keys.D:
                         yModifier = 1;
                     break;
             }
