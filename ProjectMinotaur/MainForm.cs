@@ -37,8 +37,7 @@ namespace ProjectMinotaur
             graphicsManager.Update();
         }
 
-
-        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             gameManager.KeyPressed(e);
         }
@@ -63,5 +62,7 @@ namespace ProjectMinotaur
         {
             e.Handled = true;
         }
+
+
     }
 }

@@ -13,6 +13,11 @@ namespace ProjectMinotaur
         private Point playerPosition;
         private Point oldPlayerPosition;
         private Color playerColor = Color.LimeGreen;
+        private List<Keys> controls = new List<Keys>{Keys.W,Keys.S,Keys.A,Keys.D };
+       
+        //private List<Keys> keysPressed = new List<Keys>();
+
+
         public PlayerController(GraphicsManager graphicsManager, MazeManager mazeManager)
         {
             this.graphicsManager = graphicsManager;
@@ -49,23 +54,31 @@ namespace ProjectMinotaur
         }
         public void KeyPressed(KeyEventArgs e)
         {
-            int xModifier= 0,yModifier=0;
-            switch (e.KeyCode)
+            MovePlayer(e.KeyCode);
+        }
+        private void MovePlayer(Keys key)
+        {
+            int xModifier = 0, yModifier = 0;
+            switch (key)
             {
                 case Keys.W:
+
                     xModifier = -1;
                     break;
                 case Keys.S:
+                  
                     xModifier = 1;
                     break;
                 case Keys.A:
+                    
                     yModifier = -1;
                     break;
                 case Keys.D:
-                        yModifier = 1;
+                    
+                    yModifier = 1;
                     break;
             }
-            Point newPlayerPosition = new Point(playerPosition.X + xModifier,playerPosition.Y+yModifier);
+            Point newPlayerPosition = new Point(playerPosition.X + xModifier, playerPosition.Y + yModifier);
 
             if (mazeManager.IsFree(newPlayerPosition))
             {
@@ -74,5 +87,6 @@ namespace ProjectMinotaur
                 graphicsManager.ChangePlayerPosition(this);
             }
         }
+
     }
 }

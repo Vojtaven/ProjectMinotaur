@@ -141,7 +141,7 @@
             Name = "MainForm";
             Text = "Project Minotaur";
             Load += MainForm_Load;
-            KeyUp += MainForm_KeyUp;
+            KeyDown += MainForm_KeyDown;
             ((System.ComponentModel.ISupportInitialize)GameCanvas).EndInit();
             ((System.ComponentModel.ISupportInitialize)mazeSizeNUP).EndInit();
             settingsGB.ResumeLayout(false);
