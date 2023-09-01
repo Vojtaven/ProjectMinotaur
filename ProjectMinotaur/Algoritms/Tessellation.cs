@@ -12,6 +12,7 @@ namespace Algoritms
         private int[,] offsetCoeficinets = { { 1, 0 }, { 0, 1 }, { 1, 1 } };
         private int[,] wallRemovingCoeficients = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
         private bool[,] maze;
+        private int mazeSize;
         private int chunkSize;
 
         public Tessellation(string name) : base(name) { }
@@ -20,22 +21,21 @@ namespace Algoritms
         public override bool ValidSize(int mazeSize, out int[] sugestedSizes)
         {
 
-            if (IsPowerOfTwo(mazeSize))
+            if (IsPowerOfTwo(mazeSize+1))
             {
                 return base.ValidSize(mazeSize, out sugestedSizes);
             }
             else
             {
-                sugestedSizes = NearestPowersOfTwo(mazeSize);
+                sugestedSizes = NearestPowersOfTwoMinusOne(mazeSize);
                 return false;
             }
         }
         public override bool[,] GenerateMaze(int mazeSize)
         {
-            maze = new bool[mazeSize, mazeSize];
-            chunkSize = 2;
-            StartingConfiguration();
-            while (chunkSize < mazeSize)
+
+            StartingConfiguration(mazeSize);
+            while (chunkSize < this.mazeSize)
             {
                 CopyChunk();
                 RemoveChunkWalls();
@@ -100,7 +100,7 @@ namespace Algoritms
         {
             return (x != 0) && ((x & (x - 1)) == 0);
         }
-        private int[] NearestPowersOfTwo(int x)
+        private int[] NearestPowersOfTwoMinusOne(int x)
         {
             int[] nearestPowers = new int[2];
             nearestPowers[1] = (int)BitOperations.RoundUpToPowerOf2((uint)x);
@@ -110,8 +110,11 @@ namespace Algoritms
 
         }
 
-        protected override void StartingConfiguration()
+        protected override void StartingConfiguration(int mazeSize)
         {
+            this.mazeSize = mazeSize;
+            maze = new bool[mazeSize, mazeSize];
+            chunkSize = 2;
             maze[1, 0] = true;
             maze[1, 1] = true;
             maze[0, 1] = true;

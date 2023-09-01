@@ -18,22 +18,15 @@ namespace Algoritms
 
         public override bool ValidSize(int mazeSize, out int[] sugestedSizes)
         {
-            if (mazeSize % 2 == 1)
-            {
+            
                 return base.ValidSize(mazeSize, out sugestedSizes);
-            }
-            else
-            {
-                sugestedSizes = new int[] { mazeSize - 1, mazeSize + 1 };
-                return false;
-            }
         }
+        
 
         public override bool[,] GenerateMaze(int mazeSize)
         {
-            this.mazeSize = mazeSize;
-            maze = new bool[mazeSize, mazeSize];
-            StartingConfiguration();
+
+            StartingConfiguration(mazeSize);
 
             GenerateNextCell(new Point(0, 0));
 
@@ -44,20 +37,9 @@ namespace Algoritms
         private void GenerateNextCell(Point cell)
         {
             maze[cell.X, cell.Y] = false;
-            List<Point> unvisitedNeigbours = new List<Point>();
+            List<Point> unvisitedNeigbours = AddNeigbours(cell);
+
             Point tempPoint;
-            for (int i = 0; i < 4; i++)
-            {
-                tempPoint = cell;
-                tempPoint.Offset( neigbours[i]);
-                if (IsInBoundaries(tempPoint))
-                {
-                    unvisitedNeigbours.Add(tempPoint);
-                }  
-            }
-
-
-
             int index;
             while (unvisitedNeigbours.Count > 0)
             {
@@ -72,8 +54,10 @@ namespace Algoritms
             }
         }
 
-        protected override void StartingConfiguration()
+        protected override void StartingConfiguration(int mazeSize)
         {
+            this.mazeSize = mazeSize;
+            maze = new bool[mazeSize, mazeSize];
             for (int i = 0; i < mazeSize; i++)
             {
                 for (int j = 0; j < mazeSize; j++)
@@ -81,6 +65,24 @@ namespace Algoritms
                     maze[i, j] = true;
                 }
             }
+        }
+
+        private List<Point> AddNeigbours(Point cell)
+        {
+
+            List<Point> unvisitedNeigbours = new List<Point>();
+            Point tempPoint;
+            for (int i = 0; i < 4; i++)
+            {
+                tempPoint = cell;
+                tempPoint.Offset(neigbours[i]);
+                if (IsInBoundaries(tempPoint) && maze[tempPoint.X, tempPoint.Y])
+                {
+                    unvisitedNeigbours.Add(tempPoint);
+                }
+            }
+
+            return unvisitedNeigbours;
         }
         private bool IsInBoundaries(Point point)
         {

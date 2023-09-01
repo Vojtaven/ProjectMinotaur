@@ -15,10 +15,19 @@ namespace Algoritms
         }
 
 
+
         public virtual bool ValidSize(int mazeSize, out int[] sugestedSizes)
         {
-            sugestedSizes = new int[2];
-            return true;
+            if (mazeSize % 2 == 1)
+            {
+                sugestedSizes = new int[2];
+                return true;
+            }
+            else
+            {
+                sugestedSizes = new int[] { mazeSize - 1, mazeSize + 1 };
+                return false;
+            }
         }
         public override string ToString()
         {
@@ -27,7 +36,7 @@ namespace Algoritms
 
         public abstract bool[,] GenerateMaze(int MazeSize);
 
-        protected abstract void StartingConfiguration();
+        protected abstract void StartingConfiguration(int mazeSize);
 
     }
 }

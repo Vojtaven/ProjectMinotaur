@@ -22,7 +22,7 @@ namespace Algoritms
             return maze;
         }
 
-        protected override void StartingConfiguration()
+        protected override void StartingConfiguration(int mazeSize)
         {
             throw new NotImplementedException();
         }
