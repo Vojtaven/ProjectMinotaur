@@ -23,15 +23,12 @@ namespace ProjectMinotaur
 
             graphicsManager = new GraphicsManager(GameCanvas);
             gameManager = new GameManager(graphicsManager, algoritmChoiceCB, mazeSizeNUP);
-
-            //Test code
-            //graphicsManager.CreateMazeBase(new int[] { 50,50   });
-            //graphicsManager.CreateMazeFromMap(testMaze);
-            //graphicsManager.PlayerPosition = new Point(0, 0);
-            //graphicsManager.AddWallPiece(new Point(0, 1));
-            //graphicsManager.AddWallPiece(new Point(1, 0));
         }
-
+        /// <summary>
+        /// Tick timeru na update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             graphicsManager.Update();
@@ -41,12 +38,18 @@ namespace ProjectMinotaur
         {
             gameManager.KeyPressed(e);
         }
-
+        /// <summary>
+        /// Stisknutí tlaèítka na generování bludištì
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void generateBt_Click(object sender, EventArgs e)
         {
             gameManager.GenerateMaze();
         }
-
+        /// <summary>
+        /// Roztáhne okno na celou obrazovku
+        /// </summary>
         private void FormatWindows()
         {
             this.WindowState = FormWindowState.Maximized;
@@ -56,11 +59,6 @@ namespace ProjectMinotaur
             GameCanvas.Width = GameCanvas.Height;
             GameCanvas.Location = new Point((this.Width - GameCanvas.Width) / 2 + gameCanvasPadding, gameCanvasPadding);
 
-        }
-
-        private void algoritmChoiceCB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
         }
     }
 }

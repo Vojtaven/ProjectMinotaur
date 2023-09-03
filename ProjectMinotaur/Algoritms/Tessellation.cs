@@ -12,7 +12,7 @@ namespace Algoritms
         private int[,] offsetCoeficinets = { { 1, 0 }, { 0, 1 }, { 1, 1 } };
         private int[,] wallRemovingCoeficients = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
         private bool[,] maze;
-        private int mazeSize;
+
         private int chunkSize;
 
         public Tessellation(string name) : base(name) { }
@@ -37,14 +37,18 @@ namespace Algoritms
             StartingConfiguration(mazeSize);
             while (chunkSize < this.mazeSize)
             {
-                CopyChunk();
-                RemoveChunkWalls();
+                CopyChunk(chunkSize);
+                RemoveChunkWalls(chunkSize);
                 chunkSize = chunkSize * 2;
             }
             return maze;
         }
 
-        private void CopyChunk()
+        /// <summary>
+        /// Zkopíruje chunk dané velikosti začínající na souřadnicích [0,0] na sousedící chunky dané velikosti 
+        /// </summary>
+        /// <param name="chunkSize"></param>
+        private void CopyChunk(int chunkSize)
         {
             int x, y;
             int mazeSize = maze.GetLength(0);
@@ -62,8 +66,11 @@ namespace Algoritms
                 }
             }
         }
-
-        private void RemoveChunkWalls()
+        /// <summary>
+        /// Odstraní zdi na pomezí chunů dané velikosti
+        /// </summary>
+        /// <param name="chunkSize"></param>
+        private void RemoveChunkWalls(int chunkSize)
         {
             Random random = new Random();
             int wallWithoutHole = random.Next(4);
@@ -96,10 +103,21 @@ namespace Algoritms
             }
         }
 
+        /// <summary>
+        /// Zkontroluje zda x je mocninou 2
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         private bool IsPowerOfTwo(int x)
         {
             return (x != 0) && ((x & (x - 1)) == 0);
         }
+
+        /// <summary>
+        /// Najde dvě nejbližší mocniny dvojky minus jedna k číslu x
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         private int[] NearestPowersOfTwoMinusOne(int x)
         {
             int[] nearestPowers = new int[2];

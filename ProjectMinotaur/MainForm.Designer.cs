@@ -54,7 +54,7 @@
             // 
             GameCanvas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             GameCanvas.BackColor = SystemColors.InfoText;
-            GameCanvas.Location = new Point(249, 0);
+            GameCanvas.Location = new Point(244, 0);
             GameCanvas.Name = "GameCanvas";
             GameCanvas.Size = new Size(450, 542);
             GameCanvas.TabIndex = 0;
@@ -83,7 +83,6 @@
             algoritmChoiceCB.Size = new Size(129, 23);
             algoritmChoiceCB.TabIndex = 2;
             algoritmChoiceCB.UseWaitCursor = true;
-            algoritmChoiceCB.KeyPress += algoritmChoiceCB_KeyPress;
             // 
             // mazeSizeNUP
             // 

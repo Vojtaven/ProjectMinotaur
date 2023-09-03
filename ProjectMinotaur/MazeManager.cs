@@ -20,19 +20,21 @@ namespace ProjectMinotaur
         MazeGeneretingAlgoritm[] algoritms = { new RandomizedDFS("Randomized DFS"), new Tessellation("Tessellation"), new RandomizedKruskal("Randomized Kruskal"), new RandomizedPrim("Randomized Prim"), new Wilson("Wilson") };
 
 
-        public MazeManager(GraphicsManager graphicsManager,ComboBox algoritmChoiceCB,NumericUpDown mazeSizeNUP)
+        public MazeManager(GraphicsManager graphicsManager, ComboBox algoritmChoiceCB, NumericUpDown mazeSizeNUP)
         {
             this.graphicsManager = graphicsManager;
             this.algoritmChoiceCB = algoritmChoiceCB;
-            this.mazeSizeNUP    = mazeSizeNUP;
+            this.mazeSizeNUP = mazeSizeNUP;
             Setup();
             UpdateAlgoritmsChoice();
         }
-
+        /// <summary>
+        /// Alktualizuje výběr algoritmů v Choice Boxu
+        /// </summary>
         public void UpdateAlgoritmsChoice()
         {
             algoritmChoiceCB.Items.Clear();
-            foreach(MazeGeneretingAlgoritm x in algoritms)
+            foreach (MazeGeneretingAlgoritm x in algoritms)
             {
                 algoritmChoiceCB.Items.Add(x.ToString());
             }
@@ -56,26 +58,32 @@ namespace ProjectMinotaur
             }
         }
 
+        /// <summary>
+        /// Vytvoří bludiště 
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         public void CreateMaze()
         {
             size = (int)mazeSizeNUP.Value;
             algoritmNowInUse = algoritms[algoritmChoiceCB.SelectedIndex];
             int[] suggestedSizes;
 
-            if (algoritmNowInUse.ValidSize(size,out suggestedSizes))
+            //Zkontroluje zda velikost bludistě je vhodná
+            if (algoritmNowInUse.ValidSize(size, out suggestedSizes))
             {
-               maze = algoritmNowInUse.GenerateMaze(size);
+                maze = algoritmNowInUse.GenerateMaze(size);
             }
             else
             {
+                //Pokud ne vybere mezi navrženými velikostmi
+                //A přitom zkontroluje že velikosti jsou v rozmezí NumberUpDown boxu
                 if (suggestedSizes[0] >= mazeSizeNUP.Minimum && suggestedSizes[1] <= mazeSizeNUP.Maximum)
                 {
                     size = AskSuggestedSizes(suggestedSizes);
                     if (size == -1)
                         return;
-
-
-                }if(suggestedSizes[0] < mazeSizeNUP.Minimum && suggestedSizes[1] <= mazeSizeNUP.Maximum)
+                }
+                if (suggestedSizes[0] < mazeSizeNUP.Minimum && suggestedSizes[1] <= mazeSizeNUP.Maximum)
                 {
                     if (AskSuggestedSize(suggestedSizes[1]))
                     {
@@ -84,7 +92,7 @@ namespace ProjectMinotaur
                     else
                         return;
                 }
-                if(suggestedSizes[0] >= mazeSizeNUP.Minimum && suggestedSizes[1] > mazeSizeNUP.Maximum)
+                if (suggestedSizes[0] >= mazeSizeNUP.Minimum && suggestedSizes[1] > mazeSizeNUP.Maximum)
                 {
                     if (AskSuggestedSize(suggestedSizes[0]))
                     {
@@ -94,21 +102,31 @@ namespace ProjectMinotaur
                         return;
 
                 }
-                if(suggestedSizes[0] < mazeSizeNUP.Minimum && suggestedSizes[1] > mazeSizeNUP.Maximum)
+                if (suggestedSizes[0] < mazeSizeNUP.Minimum && suggestedSizes[1] > mazeSizeNUP.Maximum)
                 {
                     throw new Exception("Suggested sizes don't fit in mazeSizeNUP interval");
                 }
 
+                //Vytvoření bludiště
                 mazeSizeNUP.Value = size;
                 maze = algoritmNowInUse.GenerateMaze(size);
             }
 
-            playerFinish = new Point(size-1, size-1);
+            //Přidání konce
+            playerFinish = new Point(size - 1, size - 1);
+
+            //Vytvoření bludiště a přidání konce
             graphicsManager.CreateMazeFromMap(maze);
             graphicsManager.AddFinish(playerFinish);
 
         }
 
+
+        /// <summary>
+        /// Zkontroluje zda na pozici není zed
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public bool IsFree(Point position)
         {
             bool outputValue = false;
@@ -117,14 +135,22 @@ namespace ProjectMinotaur
                 outputValue = !maze[position.X, position.Y];
             }
 
-
             return outputValue;
         }
 
+        /// <summary>
+        /// Počáteční nastavení bludiště
+        /// </summary>
         private void Setup()
         {
             this.Maze = new bool[51, 51];
         }
+
+        /// <summary>
+        /// Zeptá se na navrhnuté velikosti pomocí Message boxu
+        /// </summary>
+        /// <param name="suggestedSizes"></param>
+        /// <returns></returns>
         private int AskSuggestedSizes(int[] suggestedSizes)
         {
             string message = $"For inputed size is not posible to generate maze with selected algoritm. Posible sizes are {suggestedSizes[0]} and {suggestedSizes[1]}. Press Yes for {suggestedSizes[0]} or No for {suggestedSizes[1]}";
@@ -146,6 +172,11 @@ namespace ProjectMinotaur
             }
         }
 
+        /// <summary>
+        /// Zeptá se na navrhnutou velikost pomocí Message boxu
+        /// </summary>
+        /// <param name="suggestedSize"></param>
+        /// <returns></returns>
         private bool AskSuggestedSize(int suggestedSize)
         {
             string message = $"For inputed size is not posible to generate maze with selected algoritm. Posible size is {suggestedSize}. Press Yes for {suggestedSize} or NO to cancel";
@@ -163,6 +194,11 @@ namespace ProjectMinotaur
             }
         }
 
+        /// <summary>
+        /// Zkontroluje zda pozice není konec
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public bool IsFinnish(Point position)
         {
             return position == playerFinish;

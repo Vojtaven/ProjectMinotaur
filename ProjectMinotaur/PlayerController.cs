@@ -13,7 +13,7 @@ namespace ProjectMinotaur
         private Point playerPosition;
         private Point oldPlayerPosition;
         private Color playerColor = Color.LimeGreen;
-       
+
         //private List<Keys> keysPressed = new List<Keys>();
 
 
@@ -21,10 +21,13 @@ namespace ProjectMinotaur
         {
             this.graphicsManager = graphicsManager;
             this.mazeManager = mazeManager;
-            playerPosition = new Point(0,0);
+            playerPosition = new Point(0, 0);
             graphicsManager.AddPlayer(this);
         }
 
+        /// <summary>
+        /// Zkontroluje, že při změně je políčko volné
+        /// </summary>
         public Point Position
         {
             get { return playerPosition; }
@@ -38,25 +41,34 @@ namespace ProjectMinotaur
                 }
                 else
                 {
-                    throw new ArgumentException("Now valid position");
+                    throw new ArgumentException("No valid position");
                 }
             }
         }
         public Point OldPosition { get { return oldPlayerPosition; } }
-        public Color PlayerColor { get {  return playerColor; } }
+        public Color PlayerColor { get { return playerColor; } }
 
-
+        /// <summary>
+        /// Vrátí hráče na původní pozici
+        /// </summary>
         public void Reset()
         {
             playerPosition = new Point(0, 0);
             graphicsManager.AddPlayer(this);
         }
+
         public void KeyPressed(KeyEventArgs e)
         {
             MovePlayer(e.KeyCode);
         }
+        /// <summary>
+        /// Zkontroluje, která klávesa byla stlačena a popřípadě hýbne hráčem
+        /// </summary>
+        /// <param name="key"></param>
         private void MovePlayer(Keys key)
         {
+
+            //Rozhodne o nové pozici
             int xModifier = 0, yModifier = 0;
             switch (key)
             {
@@ -65,15 +77,15 @@ namespace ProjectMinotaur
                     xModifier = -1;
                     break;
                 case Keys.S:
-                  
+
                     xModifier = 1;
                     break;
                 case Keys.A:
-                    
+
                     yModifier = -1;
                     break;
                 case Keys.D:
-                    
+
                     yModifier = 1;
                     break;
                 default:
@@ -81,12 +93,15 @@ namespace ProjectMinotaur
             }
             Point newPlayerPosition = new Point(playerPosition.X + xModifier, playerPosition.Y + yModifier);
 
+            //Zkontroluje zda pozice je volná
             if (mazeManager.IsFree(newPlayerPosition))
             {
                 oldPlayerPosition = playerPosition;
                 playerPosition = newPlayerPosition;
                 graphicsManager.ChangePlayerPosition(this);
-                if(mazeManager.IsFinnish(newPlayerPosition))
+
+                //Zkontroluje zda hráč nevyhrál
+                if (mazeManager.IsFinnish(newPlayerPosition))
                 {
                     MessageBox.Show("You win! :)");
                 }

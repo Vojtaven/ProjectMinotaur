@@ -31,6 +31,11 @@ namespace ProjectMinotaur
             wallBrush = new SolidBrush(Color.FromArgb(gameCanvas.BackColor.ToArgb() ^ 0xffffff));
         }
 
+        /// <summary>
+        /// Vytvoří bludiště z mapy
+        /// </summary>
+        /// <param name="mazeMap"></param>
+        /// <exception cref="ArgumentException"></exception>
         public void CreateMazeFromMap(bool[,] mazeMap)
         {
             if (mazeMap.GetLength(0) != mazeMap.GetLength(1))
@@ -55,6 +60,11 @@ namespace ProjectMinotaur
 
             mazeGenerationInProgress = false;
         }
+        /// <summary>
+        /// Přidá zeď na pozici
+        /// </summary>
+        /// <param name="position"></param>
+        /// <exception cref="ArgumentException"></exception>
         public void AddWallPiece(Point position)
         {
             if (position.X >= mazeSize || position.Y >= mazeSize)
@@ -63,6 +73,11 @@ namespace ProjectMinotaur
             graphics.FillRectangle(wallBrush, (position.Y + 1) * wallThickness, (position.X + 1) * wallThickness, wallThickness, wallThickness);
         }
 
+        /// <summary>
+        /// Změní pozici hráče
+        /// </summary>
+        /// <param name="player"></param>
+        /// <exception cref="ArgumentException"></exception>
         public void ChangePlayerPosition(PlayerController player)
         {
             if ((player.Position.X >= mazeSize || player.Position.Y >= mazeSize))
@@ -71,34 +86,28 @@ namespace ProjectMinotaur
             RemovePlayer(player);
             AddPlayer(player);
         }
+        /// <summary>
+        /// Odebere hráče z bludiště
+        /// </summary>
+        /// <param name="player"></param>
         public void RemovePlayer(PlayerController player)
         {
             graphics.FillRectangle(backgroundBrush, (player.OldPosition.Y + 1) * wallThickness + playerOffset, (player.OldPosition.X + 1) * wallThickness + playerOffset, wallThickness / playerScaleDown, wallThickness / playerScaleDown);
         }
+        /// <summary>
+        /// Přidá hráče do bludiště
+        /// </summary>
+        /// <param name="player"></param>
         public void AddPlayer(PlayerController player)
         {
             SolidBrush playerBrush = new SolidBrush(player.PlayerColor);
             graphics.FillRectangle(playerBrush, (player.Position.Y + 1) * wallThickness + playerOffset, (player.Position.X + 1) * wallThickness + playerOffset, wallThickness / playerScaleDown, wallThickness / playerScaleDown);
         }
 
-        public void CreateMazeBase(int[] mazeShape)
-        {
-            if (mazeShape[0] != mazeShape[1])
-                throw new ArgumentException("Maze must be square");
-
-            width = gameCanvas.Width;
-            height = gameCanvas.Height;
-            mazeSize = mazeShape[0];
-
-            wallThickness = (float)width / (mazeSize + 2);
-            playerOffset = (wallThickness - (wallThickness / playerScaleDown)) / 2;
-
-            maze = new Bitmap(width, height);
-            graphics = Graphics.FromImage(maze);
-
-            CreateMazeWalls();
-        }
-
+        /// <summary>
+        /// Vytvoří základ bludiště
+        /// Nastaví hodnoty na wallThickness a playerOffset aby odpovídali velikosti bludiště
+        /// </summary>
         private void CreateMazeBase()
         {
             width = gameCanvas.Width;
@@ -112,7 +121,9 @@ namespace ProjectMinotaur
             CreateMazeWalls();
         }
 
-
+        /// <summary>
+        /// Vytvoří 4 základní zdi kolem bludiště
+        /// </summary>
         private void CreateMazeWalls()
         {
             graphics.FillRectangle(wallBrush, 0, 0, wallThickness, height);
@@ -121,15 +132,21 @@ namespace ProjectMinotaur
             graphics.FillRectangle(wallBrush, 0, height - wallThickness, width, wallThickness);
         }
 
+        /// <summary>
+        /// Aktualizuje mapu bludiště
+        /// </summary>
         public void Update()
         {
             if (!mazeGenerationInProgress)
                 gameCanvas.Image = maze;
         }
-
+        /// <summary>
+        /// Přidá na pozici konec bludiště
+        /// </summary>
+        /// <param name="finish"></param>
         public void AddFinish(Point finish)
         {
-            graphics.FillRectangle(finishBrush, (finish.Y+1) * wallThickness, (finish.X+1) * wallThickness, wallThickness, wallThickness);
+            graphics.FillRectangle(finishBrush, (finish.Y + 1) * wallThickness, (finish.X + 1) * wallThickness, wallThickness, wallThickness);
         }
     }
 }

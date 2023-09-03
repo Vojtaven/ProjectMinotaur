@@ -9,8 +9,6 @@ namespace Algoritms
 {
     internal class RandomizedPrim : MazeGeneretingAlgoritm
     {
-        private Point[] neigbours = { new Point(2, 0), new Point(0, 2), new Point(-2, 0), new Point(0, -2) };
-        private int mazeSize;
         private bool[,] maze;
         Random random = new Random();
         public RandomizedPrim(string name) : base(name) { }
@@ -19,10 +17,12 @@ namespace Algoritms
         public override bool[,] GenerateMaze(int mazeSize)
         {
             StartingConfiguration(mazeSize);
+
             List<Point> unvisitedAdjacentCells = new List<Point>();
             List<Point> adjacentCellsPartOfMaze = new List<Point>();
             List<Point> adjacentCells;
 
+            //Náhodný bod pro začátek generace bludiště
             unvisitedAdjacentCells.Add(new Point(random.Next(mazeSize / 2) * 2, random.Next(mazeSize / 2) * 2));
 
             Point cellInProcess;
@@ -30,15 +30,20 @@ namespace Algoritms
 
             while (unvisitedAdjacentCells.Count > 0)
             {
+                //Vybereme náhodnou buňku ze seznamu
                 index = random.Next( unvisitedAdjacentCells.Count);
                 cellInProcess = unvisitedAdjacentCells[index];
                 unvisitedAdjacentCells.RemoveAt(index);
+
+                //Zkontrolujeme zda je nenavštívená
                 if (maze[cellInProcess.X, cellInProcess.Y])
                 {
+                    
                     maze[cellInProcess.X, cellInProcess.Y] = false;
 
                     adjacentCells = FindAllAdjacentCells(cellInProcess);
 
+                    //Zjistíme, kteří sousedé jsou navštívení a kteří ne
                     for (int i = 0; i < adjacentCells.Count; i++)
                     {
                         if (maze[adjacentCells[i].X, adjacentCells[i].Y])
@@ -50,6 +55,7 @@ namespace Algoritms
                             adjacentCellsPartOfMaze.Add(adjacentCells[i]);
                         }
                     }
+
                     ConnectCellWithRandomCell(cellInProcess, adjacentCellsPartOfMaze);
                     adjacentCellsPartOfMaze.Clear();
                 }
@@ -71,6 +77,11 @@ namespace Algoritms
             }
         }
 
+        /// <summary>
+        /// Pokud existuje nějaká buňka v seznamu adjacentCells tak vybere náhnou a spojí s ní bunku cell
+        /// </summary>
+        /// <param name="cell"></param>
+        /// <param name="adjacentCells"></param>
         private void ConnectCellWithRandomCell(Point cell,List<Point> adjacentCells)
         {
             if (adjacentCells.Count > 0)
@@ -80,6 +91,12 @@ namespace Algoritms
                 maze[cell.X + (tempPoint.X - cell.X) / 2, cell.Y + (tempPoint.Y - cell.Y) / 2] = false;
             }
         }
+
+        /// <summary>
+        /// Najde všechny sousedy buňky cell, kteří nejsou mimo hranice bludiště
+        /// </summary>
+        /// <param name="cell"></param>
+        /// <returns></returns>
         private List<Point> FindAllAdjacentCells( Point cell)
         {
             List<Point> adjacentCells = new List<Point>();
@@ -97,9 +114,6 @@ namespace Algoritms
             return adjacentCells;
         }
 
-        private bool IsInBoundaries(Point point)
-        {
-            return 0 <= point.X && point.X < mazeSize && 0 <= point.Y && point.Y < mazeSize;
-        }
+
     }
 }
