@@ -60,5 +60,10 @@ namespace ProjectMinotaur
             GameCanvas.Location = new Point((this.Width - GameCanvas.Width) / 2 + gameCanvasPadding, gameCanvasPadding);
 
         }
+
+        private void algoritmChoiceCB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

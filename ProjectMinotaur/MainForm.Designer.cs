@@ -83,6 +83,7 @@
             algoritmChoiceCB.Size = new Size(129, 23);
             algoritmChoiceCB.TabIndex = 2;
             algoritmChoiceCB.UseWaitCursor = true;
+            algoritmChoiceCB.KeyPress += algoritmChoiceCB_KeyPress;
             // 
             // mazeSizeNUP
             // 
@@ -111,9 +112,9 @@
             algoritmChoiceLB.Location = new Point(7, 18);
             algoritmChoiceLB.Margin = new Padding(2, 0, 2, 0);
             algoritmChoiceLB.Name = "algoritmChoiceLB";
-            algoritmChoiceLB.Size = new Size(94, 15);
+            algoritmChoiceLB.Size = new Size(101, 15);
             algoritmChoiceLB.TabIndex = 6;
-            algoritmChoiceLB.Text = "Algoritm Choice";
+            algoritmChoiceLB.Text = "Algorithm Choice";
             // 
             // settingsGB
             // 
