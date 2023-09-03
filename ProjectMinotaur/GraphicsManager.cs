@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Numerics;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,8 @@ namespace ProjectMinotaur
         private PictureBox gameCanvas;
         private SolidBrush wallBrush = new SolidBrush(Color.Black);
         private SolidBrush backgroundBrush;
+        private SolidBrush finishBrush = new SolidBrush(Color.Yellow);
+
         private int width, height, mazeSize;
         private float wallThickness;
         private bool mazeGenerationInProgress = false;
@@ -35,6 +38,7 @@ namespace ProjectMinotaur
 
             mazeSize = mazeMap.GetLength(0);
             mazeGenerationInProgress = true;
+
 
             CreateMazeBase();
 
@@ -121,6 +125,11 @@ namespace ProjectMinotaur
         {
             if (!mazeGenerationInProgress)
                 gameCanvas.Image = maze;
+        }
+
+        public void AddFinish(Point finish)
+        {
+            graphics.FillRectangle(finishBrush, (finish.Y+1) * wallThickness, (finish.X+1) * wallThickness, wallThickness, wallThickness);
         }
     }
 }

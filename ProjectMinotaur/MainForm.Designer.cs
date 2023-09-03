@@ -91,7 +91,7 @@
             mazeSizeNUP.Location = new Point(10, 81);
             mazeSizeNUP.Margin = new Padding(70, 60, 70, 60);
             mazeSizeNUP.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
-            mazeSizeNUP.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
+            mazeSizeNUP.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
             mazeSizeNUP.Name = "mazeSizeNUP";
             mazeSizeNUP.Size = new Size(126, 23);
             mazeSizeNUP.TabIndex = 3;

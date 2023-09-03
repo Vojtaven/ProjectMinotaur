@@ -13,6 +13,8 @@ namespace ProjectMinotaur
         private int size;
         private GraphicsManager graphicsManager;
         private MazeGeneretingAlgoritm algoritmNowInUse;
+        private Point playerStart = new Point(0, 0);
+        private Point playerFinish;
         ComboBox algoritmChoiceCB;
         NumericUpDown mazeSizeNUP;
         MazeGeneretingAlgoritm[] algoritms = { new RandomizedDFS("Randomized DFS"), new Tessellation("Tessellation"), new RandomizedKruskal("Randomized Kruskal"), new RandomizedPrim("Randomized Prim"), new Wilson("Wilson") };
@@ -49,6 +51,7 @@ namespace ProjectMinotaur
                 size = value.GetLength(0);
                 mazeSizeNUP.Value = size;
                 maze = value;
+                playerFinish = new Point(size - 1, size - 1);
                 graphicsManager.CreateMazeFromMap(maze);
             }
         }
@@ -100,7 +103,10 @@ namespace ProjectMinotaur
                 maze = algoritmNowInUse.GenerateMaze(size);
             }
 
+            playerFinish = new Point(size-1, size-1);
             graphicsManager.CreateMazeFromMap(maze);
+            graphicsManager.AddFinish(playerFinish);
+
         }
 
         public bool IsFree(Point position)
@@ -157,5 +163,9 @@ namespace ProjectMinotaur
             }
         }
 
+        public bool IsFinnish(Point position)
+        {
+            return position == playerFinish;
+        }
     }
 }

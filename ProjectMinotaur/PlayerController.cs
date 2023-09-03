@@ -13,7 +13,6 @@ namespace ProjectMinotaur
         private Point playerPosition;
         private Point oldPlayerPosition;
         private Color playerColor = Color.LimeGreen;
-        private List<Keys> controls = new List<Keys>{Keys.W,Keys.S,Keys.A,Keys.D };
        
         //private List<Keys> keysPressed = new List<Keys>();
 
@@ -77,6 +76,8 @@ namespace ProjectMinotaur
                     
                     yModifier = 1;
                     break;
+                default:
+                    return;
             }
             Point newPlayerPosition = new Point(playerPosition.X + xModifier, playerPosition.Y + yModifier);
 
@@ -85,6 +86,10 @@ namespace ProjectMinotaur
                 oldPlayerPosition = playerPosition;
                 playerPosition = newPlayerPosition;
                 graphicsManager.ChangePlayerPosition(this);
+                if(mazeManager.IsFinnish(newPlayerPosition))
+                {
+                    MessageBox.Show("You win! :)");
+                }
             }
         }
 
