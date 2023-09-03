@@ -57,32 +57,46 @@ namespace ProjectMinotaur
         {
             size = (int)mazeSizeNUP.Value;
             algoritmNowInUse = algoritms[algoritmChoiceCB.SelectedIndex];
-            int[] sugestedSizes;
+            int[] suggestedSizes;
 
-            if (algoritmNowInUse.ValidSize(size,out sugestedSizes))
+            if (algoritmNowInUse.ValidSize(size,out suggestedSizes))
             {
                maze = algoritmNowInUse.GenerateMaze(size);
             }
             else
             {
-                string message = $"For inputed size is not posible to generate maze with selected algoritm. Posible sizes are {sugestedSizes[0]} and {sugestedSizes[1]}. Press Yes for {sugestedSizes[0]} or No for {sugestedSizes[1]}";
-                string title = "Invalid Size";
-                MessageBoxButtons buttons = MessageBoxButtons.YesNoCancel;
-                DialogResult result = MessageBox.Show(message, title, buttons);
-                if (result == DialogResult.Yes)
+                if (suggestedSizes[0] >= mazeSizeNUP.Minimum && suggestedSizes[1] <= mazeSizeNUP.Maximum)
                 {
-                    size = sugestedSizes[0];
-                }
-                else if(result == DialogResult.No)
-                {
-                    size = sugestedSizes[1];
-                }
-                else
-                {
-                    return;
-                }
-                mazeSizeNUP.Value = size;
+                    size = AskSuggestedSizes(suggestedSizes);
+                    if (size == -1)
+                        return;
 
+
+                }if(suggestedSizes[0] < mazeSizeNUP.Minimum && suggestedSizes[1] <= mazeSizeNUP.Maximum)
+                {
+                    if (AskSuggestedSize(suggestedSizes[1]))
+                    {
+                        size = suggestedSizes[1];
+                    }
+                    else
+                        return;
+                }
+                if(suggestedSizes[0] >= mazeSizeNUP.Minimum && suggestedSizes[1] > mazeSizeNUP.Maximum)
+                {
+                    if (AskSuggestedSize(suggestedSizes[0]))
+                    {
+                        size = suggestedSizes[0];
+                    }
+                    else
+                        return;
+
+                }
+                if(suggestedSizes[0] < mazeSizeNUP.Minimum && suggestedSizes[1] > mazeSizeNUP.Maximum)
+                {
+                    throw new Exception("Suggested sizes don't fit in mazeSizeNUP interval");
+                }
+
+                mazeSizeNUP.Value = size;
                 maze = algoritmNowInUse.GenerateMaze(size);
             }
 
@@ -104,6 +118,43 @@ namespace ProjectMinotaur
         private void Setup()
         {
             this.Maze = new bool[51, 51];
+        }
+        private int AskSuggestedSizes(int[] suggestedSizes)
+        {
+            string message = $"For inputed size is not posible to generate maze with selected algoritm. Posible sizes are {suggestedSizes[0]} and {suggestedSizes[1]}. Press Yes for {suggestedSizes[0]} or No for {suggestedSizes[1]}";
+            string title = "Invalid Size";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNoCancel;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+
+            if (result == DialogResult.Yes)
+            {
+                return suggestedSizes[0];
+            }
+            else if (result == DialogResult.No)
+            {
+                return suggestedSizes[1];
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        private bool AskSuggestedSize(int suggestedSize)
+        {
+            string message = $"For inputed size is not posible to generate maze with selected algoritm. Posible size is {suggestedSize}. Press Yes for {suggestedSize} or NO to cancel";
+            string title = "Invalid Size";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

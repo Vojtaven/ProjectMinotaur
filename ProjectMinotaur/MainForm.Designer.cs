@@ -36,8 +36,9 @@
             algoritmChoiceCB = new ComboBox();
             mazeSizeNUP = new NumericUpDown();
             label2 = new Label();
-            label3 = new Label();
+            algoritmChoiceLB = new Label();
             settingsGB = new GroupBox();
+            mazeSizeLB = new Label();
             ((System.ComponentModel.ISupportInitialize)GameCanvas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mazeSizeNUP).BeginInit();
             settingsGB.SuspendLayout();
@@ -53,19 +54,19 @@
             // 
             GameCanvas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             GameCanvas.BackColor = SystemColors.InfoText;
-            GameCanvas.Location = new Point(356, 0);
-            GameCanvas.Margin = new Padding(4, 5, 4, 5);
+            GameCanvas.Location = new Point(249, 0);
             GameCanvas.Name = "GameCanvas";
-            GameCanvas.Size = new Size(643, 903);
+            GameCanvas.Size = new Size(450, 542);
             GameCanvas.TabIndex = 0;
             GameCanvas.TabStop = false;
             // 
             // generateBt
             // 
             generateBt.AllowDrop = true;
-            generateBt.Location = new Point(14, 103);
+            generateBt.Location = new Point(10, 120);
+            generateBt.Margin = new Padding(2);
             generateBt.Name = "generateBt";
-            generateBt.Size = new Size(111, 33);
+            generateBt.Size = new Size(78, 20);
             generateBt.TabIndex = 1;
             generateBt.Text = "Generate";
             generateBt.UseVisualStyleBackColor = true;
@@ -75,11 +76,11 @@
             // algoritmChoiceCB
             // 
             algoritmChoiceCB.AllowDrop = true;
-            algoritmChoiceCB.Dock = DockStyle.Left;
             algoritmChoiceCB.FormattingEnabled = true;
-            algoritmChoiceCB.Location = new Point(3, 27);
+            algoritmChoiceCB.Location = new Point(7, 35);
+            algoritmChoiceCB.Margin = new Padding(2);
             algoritmChoiceCB.Name = "algoritmChoiceCB";
-            algoritmChoiceCB.Size = new Size(183, 33);
+            algoritmChoiceCB.Size = new Size(129, 23);
             algoritmChoiceCB.TabIndex = 2;
             algoritmChoiceCB.UseWaitCursor = true;
             algoritmChoiceCB.KeyPress += algoritmChoiceCB_KeyPress;
@@ -87,57 +88,72 @@
             // mazeSizeNUP
             // 
             mazeSizeNUP.AllowDrop = true;
-            mazeSizeNUP.Location = new Point(0, 265);
-            mazeSizeNUP.Margin = new Padding(100);
+            mazeSizeNUP.Location = new Point(10, 81);
+            mazeSizeNUP.Margin = new Padding(70, 60, 70, 60);
             mazeSizeNUP.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            mazeSizeNUP.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
             mazeSizeNUP.Name = "mazeSizeNUP";
-            mazeSizeNUP.Size = new Size(180, 31);
+            mazeSizeNUP.Size = new Size(126, 23);
             mazeSizeNUP.TabIndex = 3;
+            mazeSizeNUP.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(33, 148);
+            label2.Location = new Point(23, 89);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(0, 25);
+            label2.Size = new Size(0, 15);
             label2.TabIndex = 5;
             // 
-            // label3
+            // algoritmChoiceLB
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(14, 173);
-            label3.Name = "label3";
-            label3.Size = new Size(59, 25);
-            label3.TabIndex = 6;
-            label3.Text = "label3";
+            algoritmChoiceLB.AutoSize = true;
+            algoritmChoiceLB.Location = new Point(7, 18);
+            algoritmChoiceLB.Margin = new Padding(2, 0, 2, 0);
+            algoritmChoiceLB.Name = "algoritmChoiceLB";
+            algoritmChoiceLB.Size = new Size(94, 15);
+            algoritmChoiceLB.TabIndex = 6;
+            algoritmChoiceLB.Text = "Algoritm Choice";
             // 
             // settingsGB
             // 
+            settingsGB.Controls.Add(mazeSizeLB);
             settingsGB.Controls.Add(mazeSizeNUP);
-            settingsGB.Controls.Add(label3);
+            settingsGB.Controls.Add(algoritmChoiceLB);
             settingsGB.Controls.Add(algoritmChoiceCB);
             settingsGB.Controls.Add(generateBt);
             settingsGB.Dock = DockStyle.Left;
             settingsGB.Location = new Point(0, 0);
-            settingsGB.Margin = new Padding(100, 3, 3, 3);
+            settingsGB.Margin = new Padding(70, 2, 2, 2);
             settingsGB.Name = "settingsGB";
-            settingsGB.Size = new Size(224, 903);
+            settingsGB.Padding = new Padding(2);
+            settingsGB.Size = new Size(157, 542);
             settingsGB.TabIndex = 7;
             settingsGB.TabStop = false;
             settingsGB.Text = "Settings";
             // 
+            // mazeSizeLB
+            // 
+            mazeSizeLB.AutoSize = true;
+            mazeSizeLB.Location = new Point(7, 60);
+            mazeSizeLB.Margin = new Padding(2, 0, 2, 0);
+            mazeSizeLB.Name = "mazeSizeLB";
+            mazeSizeLB.Size = new Size(58, 15);
+            mazeSizeLB.TabIndex = 7;
+            mazeSizeLB.Text = "Maze Size";
+            // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(1394, 903);
+            ClientSize = new Size(976, 542);
             Controls.Add(settingsGB);
             Controls.Add(label2);
             Controls.Add(GameCanvas);
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
-            Margin = new Padding(4, 5, 4, 5);
             Name = "MainForm";
             Text = "Project Minotaur";
             Load += MainForm_Load;
@@ -158,7 +174,8 @@
         private ComboBox algoritmChoiceCB;
         private NumericUpDown mazeSizeNUP;
         private Label label2;
-        private Label label3;
+        private Label algoritmChoiceLB;
         private GroupBox settingsGB;
+        private Label mazeSizeLB;
     }
 }
