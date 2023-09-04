@@ -60,7 +60,11 @@ namespace ProjectMinotaur
             GameCanvas.Location = new Point((this.Width - GameCanvas.Width) / 2 + gameCanvasPadding, gameCanvasPadding);
 
         }
-
+        /// <summary>
+        /// Zabránìní psaní do Choice boxu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void algoritmChoiceCB_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
