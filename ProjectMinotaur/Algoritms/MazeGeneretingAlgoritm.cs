@@ -55,7 +55,7 @@ namespace Algoritms
         /// <param name="mazeSize"></param>
         protected abstract void StartingConfiguration(int mazeSize);
         /// <summary>
-        /// Zkontroluje zda bod je v mežích bludiště
+        /// Zkontroluje zda bod je v mezích bludiště
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>

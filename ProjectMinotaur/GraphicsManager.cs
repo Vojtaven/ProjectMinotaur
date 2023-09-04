@@ -60,6 +60,7 @@ namespace ProjectMinotaur
 
             mazeGenerationInProgress = false;
         }
+
         /// <summary>
         /// Přidá zeď na pozici
         /// </summary>
