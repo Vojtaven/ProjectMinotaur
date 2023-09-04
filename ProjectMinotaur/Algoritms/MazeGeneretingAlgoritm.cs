@@ -10,6 +10,8 @@ namespace Algoritms
     {
         //Souřadnice pro počítaní sousedních buněk
         protected Point[] neigbours = { new Point(2, 0), new Point(0, 2), new Point(-2, 0), new Point(0, -2) };
+        protected Random random = new Random();
+        protected bool[,] maze;
 
         private string name;
         protected int mazeSize;
@@ -51,9 +53,21 @@ namespace Algoritms
         public abstract bool[,] GenerateMaze(int MazeSize);
         /// <summary>
         /// Připraví základní konfiguraci bludiště
+        /// Přepíše všechny buňky bludiště na true
         /// </summary>
         /// <param name="mazeSize"></param>
-        protected abstract void StartingConfiguration(int mazeSize);
+        protected virtual void StartingConfiguration(int mazeSize)
+        {
+            this.mazeSize = mazeSize;
+            maze = new bool[mazeSize, mazeSize];
+            for (int i = 0; i < mazeSize; i++)
+            {
+                for (int j = 0; j < mazeSize; j++)
+                {
+                    maze[i, j] = true;
+                }
+            }
+        }
         /// <summary>
         /// Zkontroluje zda bod je v mezích bludiště
         /// </summary>

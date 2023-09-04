@@ -11,7 +11,6 @@ namespace Algoritms
     {
         private int[,] offsetCoeficinets = { { 1, 0 }, { 0, 1 }, { 1, 1 } };
         private int[,] wallRemovingCoeficients = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
-        private bool[,] maze;
 
         private int chunkSize;
 
@@ -72,7 +71,6 @@ namespace Algoritms
         /// <param name="chunkSize"></param>
         private void RemoveChunkWalls(int chunkSize)
         {
-            Random random = new Random();
             int wallWithoutHole = random.Next(4);
             int holePosition;
             int x, y;

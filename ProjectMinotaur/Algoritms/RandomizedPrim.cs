@@ -9,8 +9,6 @@ namespace Algoritms
 {
     internal class RandomizedPrim : MazeGeneretingAlgoritm
     {
-        private bool[,] maze;
-        Random random = new Random();
         public RandomizedPrim(string name) : base(name) { }
 
 
@@ -62,19 +60,6 @@ namespace Algoritms
             }
 
             return maze;
-        }
-
-        protected override void StartingConfiguration(int mazeSize)
-        {
-            this.mazeSize = mazeSize;
-            maze = new bool[mazeSize, mazeSize];
-            for (int i = 0; i < mazeSize; i++)
-            {
-                for (int j = 0; j < mazeSize; j++)
-                {
-                    maze[i, j] = true;
-                }
-            }
         }
 
         /// <summary>

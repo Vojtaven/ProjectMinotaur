@@ -17,7 +17,7 @@ namespace ProjectMinotaur
         private Point playerFinish;
         ComboBox algoritmChoiceCB;
         NumericUpDown mazeSizeNUP;
-        MazeGeneretingAlgoritm[] algoritms = { new RandomizedDFS("Randomized DFS"), new Tessellation("Tessellation"), new RandomizedKruskal("Randomized Kruskal"), new RandomizedPrim("Randomized Prim"), new Wilson("Wilson") };
+        MazeGeneretingAlgoritm[] algoritms = { new RandomizedKruskal("Randomized Kruskal"), new RandomizedDFS("Randomized DFS"), new Tessellation("Tessellation"), new RandomizedPrim("Randomized Prim"), new Wilson("Wilson") };
 
 
         public MazeManager(GraphicsManager graphicsManager, ComboBox algoritmChoiceCB, NumericUpDown mazeSizeNUP)
