@@ -10,6 +10,8 @@ Program byl naprogramován v jazyce C# za pomocí Windows Forms
 - Randomized Prim algorithm
 - Tessellation algorithm
 - Randomized depth-first search algorithm
+- Randomized Kruskal algorithm
+- Wilson
 
 ---
 
@@ -19,11 +21,13 @@ GUI je rozděleno na dvě části. Veprostřed se na nachází samotná plocha p
 
 ### Nastavení
 - Výběr algoritmu
-	- Uživatel může vybírat z algoritmů, které se ukáží po kliknutí v dropdown menu
+	- Uživatel může vybírat z algoritmů, které se ukáží po kliknutí v dropdown menu.
 - Velikost bludiště
 	- Uživatel může zadávat jakoukoliv hodnotu v rozsahu 3 až 500. Některé algoritmy mají specifické nároky na velikost. Pokud tedy po stisknutí tlačítka Generovat nebude hodnota dobrá pro vybraný algoritmus, budou uživateli zobrazeny dvě nebo jedna hodnota, kterou může odsouhlasit.
 - Tlačítko pro vygenerování bludiště
-	- Tímto tlačítkem se zahájí generace bludiště
+	- Tímto tlačítkem se zahájí generace bludiště.
+- Tlačítko pro uložení bludiště
+	- Tímto tlačítkem se uloží momentálně zobrazované bludiště do souboru.
 
 ## Pohyb
 Po vygenerování bludiště bude v levém horním rohu bludiště zobrazen hráč (zelený čtvereček ), kterým pomocí WSAD může uživatel pohybovat. Cílem je dostat se na žluté políčko v pravém dolním rohu.
