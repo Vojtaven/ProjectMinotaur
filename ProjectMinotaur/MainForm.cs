@@ -9,9 +9,6 @@ namespace ProjectMinotaur
         private GraphicsManager graphicsManager;
         private GameManager gameManager;
 
-        //private MazeManager mazeManager;
-        //private PlayerController playerController;
-        //private bool[,] testMaze = { {true,false,false, false },{false,false,false, false },{true,false,true, false }, { false, false, false,true } };
         public MainForm()
         {
             InitializeComponent();
@@ -68,6 +65,11 @@ namespace ProjectMinotaur
         private void algoritmChoiceCB_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void saveMazeBt_Click(object sender, EventArgs e)
+        {
+            graphicsManager.SaveMazeToPicture();
         }
     }
 }

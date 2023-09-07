@@ -38,6 +38,7 @@
             label2 = new Label();
             algoritmChoiceLB = new Label();
             settingsGB = new GroupBox();
+            saveMazeBt = new Button();
             mazeSizeLB = new Label();
             ((System.ComponentModel.ISupportInitialize)GameCanvas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)mazeSizeNUP).BeginInit();
@@ -63,10 +64,10 @@
             // generateBt
             // 
             generateBt.AllowDrop = true;
-            generateBt.Location = new Point(10, 120);
+            generateBt.Location = new Point(23, 115);
             generateBt.Margin = new Padding(2);
             generateBt.Name = "generateBt";
-            generateBt.Size = new Size(78, 20);
+            generateBt.Size = new Size(80, 20);
             generateBt.TabIndex = 1;
             generateBt.Text = "Generate";
             generateBt.UseVisualStyleBackColor = true;
@@ -118,6 +119,7 @@
             // 
             // settingsGB
             // 
+            settingsGB.Controls.Add(saveMazeBt);
             settingsGB.Controls.Add(mazeSizeLB);
             settingsGB.Controls.Add(mazeSizeNUP);
             settingsGB.Controls.Add(algoritmChoiceLB);
@@ -132,6 +134,16 @@
             settingsGB.TabIndex = 7;
             settingsGB.TabStop = false;
             settingsGB.Text = "Settings";
+            // 
+            // saveMazeBt
+            // 
+            saveMazeBt.Location = new Point(23, 155);
+            saveMazeBt.Name = "saveMazeBt";
+            saveMazeBt.Size = new Size(80, 20);
+            saveMazeBt.TabIndex = 8;
+            saveMazeBt.Text = "Save Maze";
+            saveMazeBt.UseVisualStyleBackColor = true;
+            saveMazeBt.Click += saveMazeBt_Click;
             // 
             // mazeSizeLB
             // 
@@ -177,5 +189,6 @@
         private Label algoritmChoiceLB;
         private GroupBox settingsGB;
         private Label mazeSizeLB;
+        private Button saveMazeBt;
     }
 }

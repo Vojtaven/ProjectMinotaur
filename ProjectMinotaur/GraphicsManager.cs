@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Numerics;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProjectMinotaur
 {
@@ -148,6 +150,27 @@ namespace ProjectMinotaur
         public void AddFinish(Point finish)
         {
             graphics.FillRectangle(finishBrush, (finish.Y + 1) * wallThickness, (finish.X + 1) * wallThickness, wallThickness, wallThickness);
+        }
+
+        public void SaveMazeToPicture()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Images|*.png;*.bmp;*.jpg";
+            ImageFormat format = ImageFormat.Png;
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string ext = System.IO.Path.GetExtension(sfd.FileName);
+                switch (ext)
+                {
+                    case ".jpg":
+                        format = ImageFormat.Jpeg;
+                        break;
+                    case ".bmp":
+                        format = ImageFormat.Bmp;
+                        break;
+                }
+                gameCanvas.Image.Save(sfd.FileName, format);
+            }
         }
     }
 }
