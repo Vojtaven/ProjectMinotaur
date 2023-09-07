@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Algoritms
 {
-    internal class RandomizedPrim : MazeGeneretingAlgoritm
+    internal class RandomizedPrim : MazeGeneretingAlgorithm
     {
         public RandomizedPrim(string name) : base(name) { }
 

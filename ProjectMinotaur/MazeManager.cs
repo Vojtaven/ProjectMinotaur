@@ -12,12 +12,12 @@ namespace ProjectMinotaur
         private bool[,] maze;
         private int size;
         private GraphicsManager graphicsManager;
-        private MazeGeneretingAlgoritm algoritmNowInUse;
+        private MazeGeneretingAlgorithm algoritmNowInUse;
         private Point playerStart = new Point(0, 0);
         private Point playerFinish;
         ComboBox algoritmChoiceCB;
         NumericUpDown mazeSizeNUP;
-        MazeGeneretingAlgoritm[] algoritms = { new Wilson("Wilson") ,new RandomizedKruskal("Randomized Kruskal"), new RandomizedDFS("Randomized DFS"), new Tessellation("Tessellation"), new RandomizedPrim("Randomized Prim")};
+        MazeGeneretingAlgorithm[] algoritms = { new Wilson("Wilson") ,new RandomizedKruskal("Randomized Kruskal"), new RandomizedDFS("Randomized DFS"), new Tessellation("Tessellation"), new RandomizedPrim("Randomized Prim")};
 
 
         public MazeManager(GraphicsManager graphicsManager, ComboBox algoritmChoiceCB, NumericUpDown mazeSizeNUP)
@@ -34,7 +34,7 @@ namespace ProjectMinotaur
         public void UpdateAlgoritmsChoice()
         {
             algoritmChoiceCB.Items.Clear();
-            foreach (MazeGeneretingAlgoritm x in algoritms)
+            foreach (MazeGeneretingAlgorithm x in algoritms)
             {
                 algoritmChoiceCB.Items.Add(x.ToString());
             }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Algoritms
 {
-    internal class Tessellation : MazeGeneretingAlgoritm
+    internal class Tessellation : MazeGeneretingAlgorithm
     {
         private int[,] offsetCoeficinets = { { 1, 0 }, { 0, 1 }, { 1, 1 } };
         private int[,] wallRemovingCoeficients = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };

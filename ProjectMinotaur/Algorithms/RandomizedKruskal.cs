@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Algoritms
 {
-    internal class RandomizedKruskal : MazeGeneretingAlgoritm
+    internal class RandomizedKruskal : MazeGeneretingAlgorithm
     {
         public RandomizedKruskal(string name) : base(name) { }
 

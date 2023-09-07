@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Algoritms
 {
-    internal class Wilson : MazeGeneretingAlgoritm
+    internal class Wilson : MazeGeneretingAlgorithm
     {
         private int[,] mazeForWalk;
         public Wilson(string name) : base(name) { }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Algoritms
 {
-    internal abstract class MazeGeneretingAlgoritm
+    internal abstract class MazeGeneretingAlgorithm
     {
         //Souřadnice pro počítaní sousedních buněk
         protected Point[] neigbours = { new Point(2, 0), new Point(0, 2), new Point(-2, 0), new Point(0, -2) };
@@ -15,7 +15,7 @@ namespace Algoritms
 
         private string name;
         protected int mazeSize;
-        public MazeGeneretingAlgoritm(string name)
+        public MazeGeneretingAlgorithm(string name)
         {
             this.name = name;
         }
