@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Algoritms
 {
-    internal class RandomizedDFS : MazeGeneretingAlgoritm
+    internal class RandomizedDFS : MazeGeneretingAlgorithm
     {
         public RandomizedDFS(string name) : base(name) { }
 
